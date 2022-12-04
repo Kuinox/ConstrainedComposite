@@ -32,7 +32,7 @@ public static class DecorExtensions
 <#= string.Join("\n", decors.Select(s=>$"    /// <typeparam name=\"TDecor{s}\">A decorator.</typeparam>")) #>
     /// <param name="arg">The object to decorate.</param>
     /// <returns> A datastructure that hold <paramref name="arg"/> and it's decorators together.</returns>
-	public static Decorated<TDecorated, <#= generics #>>? Extend<TDecorated, <#=generics#>>( <#=argType#> arg )
+	public static Decorated<TDecorated, <#= generics #>>? Extend<TDecorated, <#=generics#>>( this <#=argType#> arg )
 <#=constraints#>
 	{
 		var decorated = new Decorated<TDecorated, <#= generics #>>(arg<#= i>1 ? ".Core, " :""#><#=string.Join(", ", decorsArg.Select(s=>"arg.Decor"+s))#>, out bool res);

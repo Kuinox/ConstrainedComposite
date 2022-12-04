@@ -13,7 +13,7 @@ public static class DecorExtensions
     /// <typeparam name="TDecor1">A decorator.</typeparam>
     /// <param name="arg">The object to decorate.</param>
     /// <returns> A datastructure that hold <paramref name="arg"/> and it's decorators together.</returns>
-	public static Decorated<TDecorated, TDecor1>? Extend<TDecorated, TDecor1>( TDecorated arg )
+	public static Decorated<TDecorated, TDecor1>? Extend<TDecorated, TDecor1>( this TDecorated arg )
         where TDecor1 : IDecor<TDecorated, TDecor1>
 	{
 		var decorated = new Decorated<TDecorated, TDecor1>(arg, out bool res);
@@ -28,7 +28,7 @@ public static class DecorExtensions
     /// <typeparam name="TDecor2">A decorator.</typeparam>
     /// <param name="arg">The object to decorate.</param>
     /// <returns> A datastructure that hold <paramref name="arg"/> and it's decorators together.</returns>
-	public static Decorated<TDecorated, TDecor1, TDecor2>? Extend<TDecorated, TDecor1, TDecor2>( Decorated<TDecorated,TDecor1> arg )
+	public static Decorated<TDecorated, TDecor1, TDecor2>? Extend<TDecorated, TDecor1, TDecor2>( this Decorated<TDecorated,TDecor1> arg )
         where TDecor1 : IDecor<TDecorated, TDecor1>
         where TDecor2 : IDecor<TDecorated, TDecor2>
 	{
@@ -45,7 +45,7 @@ public static class DecorExtensions
     /// <typeparam name="TDecor3">A decorator.</typeparam>
     /// <param name="arg">The object to decorate.</param>
     /// <returns> A datastructure that hold <paramref name="arg"/> and it's decorators together.</returns>
-	public static Decorated<TDecorated, TDecor1, TDecor2, TDecor3>? Extend<TDecorated, TDecor1, TDecor2, TDecor3>( Decorated<TDecorated,TDecor1,TDecor2> arg )
+	public static Decorated<TDecorated, TDecor1, TDecor2, TDecor3>? Extend<TDecorated, TDecor1, TDecor2, TDecor3>( this Decorated<TDecorated,TDecor1,TDecor2> arg )
         where TDecor1 : IDecor<TDecorated, TDecor1>
         where TDecor2 : IDecor<TDecorated, TDecor2>
         where TDecor3 : IDecor<TDecorated, TDecor3>
@@ -64,7 +64,7 @@ public static class DecorExtensions
     /// <typeparam name="TDecor4">A decorator.</typeparam>
     /// <param name="arg">The object to decorate.</param>
     /// <returns> A datastructure that hold <paramref name="arg"/> and it's decorators together.</returns>
-	public static Decorated<TDecorated, TDecor1, TDecor2, TDecor3, TDecor4>? Extend<TDecorated, TDecor1, TDecor2, TDecor3, TDecor4>( Decorated<TDecorated,TDecor1,TDecor2,TDecor3> arg )
+	public static Decorated<TDecorated, TDecor1, TDecor2, TDecor3, TDecor4>? Extend<TDecorated, TDecor1, TDecor2, TDecor3, TDecor4>( this Decorated<TDecorated,TDecor1,TDecor2,TDecor3> arg )
         where TDecor1 : IDecor<TDecorated, TDecor1>
         where TDecor2 : IDecor<TDecorated, TDecor2>
         where TDecor3 : IDecor<TDecorated, TDecor3>
@@ -85,7 +85,7 @@ public static class DecorExtensions
     /// <typeparam name="TDecor5">A decorator.</typeparam>
     /// <param name="arg">The object to decorate.</param>
     /// <returns> A datastructure that hold <paramref name="arg"/> and it's decorators together.</returns>
-	public static Decorated<TDecorated, TDecor1, TDecor2, TDecor3, TDecor4, TDecor5>? Extend<TDecorated, TDecor1, TDecor2, TDecor3, TDecor4, TDecor5>( Decorated<TDecorated,TDecor1,TDecor2,TDecor3,TDecor4> arg )
+	public static Decorated<TDecorated, TDecor1, TDecor2, TDecor3, TDecor4, TDecor5>? Extend<TDecorated, TDecor1, TDecor2, TDecor3, TDecor4, TDecor5>( this Decorated<TDecorated,TDecor1,TDecor2,TDecor3,TDecor4> arg )
         where TDecor1 : IDecor<TDecorated, TDecor1>
         where TDecor2 : IDecor<TDecorated, TDecor2>
         where TDecor3 : IDecor<TDecorated, TDecor3>
@@ -108,7 +108,7 @@ public static class DecorExtensions
     /// <typeparam name="TDecor6">A decorator.</typeparam>
     /// <param name="arg">The object to decorate.</param>
     /// <returns> A datastructure that hold <paramref name="arg"/> and it's decorators together.</returns>
-	public static Decorated<TDecorated, TDecor1, TDecor2, TDecor3, TDecor4, TDecor5, TDecor6>? Extend<TDecorated, TDecor1, TDecor2, TDecor3, TDecor4, TDecor5, TDecor6>( Decorated<TDecorated,TDecor1,TDecor2,TDecor3,TDecor4,TDecor5> arg )
+	public static Decorated<TDecorated, TDecor1, TDecor2, TDecor3, TDecor4, TDecor5, TDecor6>? Extend<TDecorated, TDecor1, TDecor2, TDecor3, TDecor4, TDecor5, TDecor6>( this Decorated<TDecorated,TDecor1,TDecor2,TDecor3,TDecor4,TDecor5> arg )
         where TDecor1 : IDecor<TDecorated, TDecor1>
         where TDecor2 : IDecor<TDecorated, TDecor2>
         where TDecor3 : IDecor<TDecorated, TDecor3>
@@ -133,7 +133,7 @@ public static class DecorExtensions
     /// <typeparam name="TDecor7">A decorator.</typeparam>
     /// <param name="arg">The object to decorate.</param>
     /// <returns> A datastructure that hold <paramref name="arg"/> and it's decorators together.</returns>
-	public static Decorated<TDecorated, TDecor1, TDecor2, TDecor3, TDecor4, TDecor5, TDecor6, TDecor7>? Extend<TDecorated, TDecor1, TDecor2, TDecor3, TDecor4, TDecor5, TDecor6, TDecor7>( Decorated<TDecorated,TDecor1,TDecor2,TDecor3,TDecor4,TDecor5,TDecor6> arg )
+	public static Decorated<TDecorated, TDecor1, TDecor2, TDecor3, TDecor4, TDecor5, TDecor6, TDecor7>? Extend<TDecorated, TDecor1, TDecor2, TDecor3, TDecor4, TDecor5, TDecor6, TDecor7>( this Decorated<TDecorated,TDecor1,TDecor2,TDecor3,TDecor4,TDecor5,TDecor6> arg )
         where TDecor1 : IDecor<TDecorated, TDecor1>
         where TDecor2 : IDecor<TDecorated, TDecor2>
         where TDecor3 : IDecor<TDecorated, TDecor3>
