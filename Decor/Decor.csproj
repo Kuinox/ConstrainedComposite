@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<EnablePreviewFeatures>True</EnablePreviewFeatures>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Include="Decorated.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>Decorated.tt</DependentUpon>
+	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Decorated.tt">
+	    <Generator>TextTemplatingFileGenerator</Generator>
+	    <LastGenOutput>Decorated.cs</LastGenOutput>
+	  </None>
+	  <None Update="DecorExtensions.tt">
+	    <Generator>TextTemplatingFileGenerator</Generator>
+	    <LastGenOutput>DecorExtensions.cs</LastGenOutput>
+	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Decorated.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>Decorated.tt</DependentUpon>
+	  </Compile>
+	  <Compile Update="DecorExtensions.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>DecorExtensions.tt</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+</Project>

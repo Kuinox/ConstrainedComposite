@@ -1,0 +1,43 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+
+namespace Decor;
+
+/// <summary>
+/// This class hold extensions methods that allow to decorate objects.
+/// </summary>
+public static class DecorExtensions
+{
+<#
+	foreach(var i in Enumerable.Range(1, 7))
+{
+	var decors = Enumerable.Range(1, i).ToArray();
+	var generics = string.Join(", ", decors.Select(s=>"TDecor"+s));
+	var decorsArg = decors.Take(i-1).ToArray();
+	var constraints = string.Join("\n", decors.Select(j=>$"        where TDecor{j} : IDecor<TDecorated, TDecor{j}>"));
+	var argType = i==1 ? "TDecorated" : "Decorated<TDecorated,"+string.Join(",", decorsArg.Select(s=>"TDecor"+s))+">";
+#>
+    /// <summary>
+<# if(i == 1) { #>
+    /// Apply a decorator on an object.
+<# } else { #>
+	/// Apply an additional decorator on this decorated object.
+<# } #>
+    /// </summary>
+    /// <typeparam name="TDecorated">The decorated object.</typeparam>
+<#= string.Join("\n", decors.Select(s=>$"    /// <typeparam name=\"TDecor{s}\">A decorator.</typeparam>")) #>
+    /// <param name="arg">The object to decorate.</param>
+    /// <returns> A datastructure that hold <paramref name="arg"/> and it's decorators together.</returns>
+	public static Decorated<TDecorated, <#= generics #>>? Extend<TDecorated, <#=generics#>>( <#=argType#> arg )
+<#=constraints#>
+	{
+		var decorated = new Decorated<TDecorated, <#= generics #>>(arg<#= i>1 ? ".Core, " :""#><#=string.Join(", ", decorsArg.Select(s=>"arg.Decor"+s))#>, out bool res);
+		if(!res) return null;
+		return decorated;
+	}
+<# } #>
+}

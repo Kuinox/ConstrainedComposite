@@ -1,0 +1,50 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+
+namespace Decor;
+
+<#
+foreach(var i in Enumerable.Range(1, 8))
+{
+	var decors = Enumerable.Range(1, i).Select(s=>"TDecor"+s).ToArray();
+#>
+
+public readonly struct Decorated<TDecorated,<#= string.Join(", ", decors)#>>
+<#= string.Join("\n", decors.Select(s=>$"    where {s} : IDecor<TDecorated, {s}>")) #>
+	
+{
+	internal Decorated(TDecorated core,<#= string.Join(", ",decors.Take(i-1).Select((s, i)=>$"{s} decor{i+1}")) + (i > 1 ? "," : "") #> out bool success)
+	{
+		Core = core;
+<#= string.Join("\n", decors.Take(i-1).Select((s,i)=>$"        Decor{i+1} = decor{i+1};")) #>
+		success = TDecor<#=i#>.TryBuild(in core, out var temp );
+		Decor<#=i#> = temp!;
+	}
+
+	internal Decorated(TDecorated core,<#= string.Join(", ",decors.Take(i).Select((s, i)=>$"{s} decor{i+1}")) #>)
+	{
+		Core = core;
+<#= string.Join("\n", decors.Take(i).Select((s,i)=>$"        Decor{i+1} = decor{i+1};")) #>
+	}
+
+	public TDecorated Core { get; }
+
+<#= string.Join("\n", decors.Select((s, i)=>$"    public {s} Decor{i+1} {{ get; }}")) #>
+    
+    public static implicit operator TDecorated(Decorated<TDecorated, <#= string.Join(", ", decors) #>> arg) => arg.Core;
+
+<# 
+	if(i > 1) {
+	foreach(var j in Enumerable.Range(0,i)) {
+	var numbers = decors.Select((s,i)=>i+1).Where((s,k) => k!=j).ToArray();
+	var downCast = string.Join(", ", numbers.Select(s=>"TDecor"+s));#>
+	public static implicit operator Decorated<TDecorated, <#= downCast #>>(Decorated<TDecorated, <#= string.Join(", ", decors)#>> arg) => new(arg.Core, <#= string.Join(", ", numbers.Select(s=>"arg.Decor"+s)) #>);
+<# }} #>
+}
+<#
+}
+#>
