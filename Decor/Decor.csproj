@@ -8,17 +8,34 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Include="Decorated.cs">
+	  <Compile Remove="Decorated - Copy.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="StatelessDecorated.cs">
+	    <DependentUpon>StatelessDecorated.tt</DependentUpon>
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
-	    <DependentUpon>Decorated.tt</DependentUpon>
+	  </None>
+	  <None Include="Decorated.cs">
+		  <DependentUpon>Decorated.tt</DependentUpon>
+		  <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
 	  </None>
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Update="StateLessDecorated.tt">
+		  <Generator>TextTemplatingFileGenerator</Generator>
+		  <LastGenOutput>StatelessDecorated.cs</LastGenOutput>
+	  </None>
 	  <None Update="Decorated.tt">
 	    <Generator>TextTemplatingFileGenerator</Generator>
 	    <LastGenOutput>Decorated.cs</LastGenOutput>
+	  </None>
+	  <None Update="StateLessDecorExtensions.tt">
+		  <Generator>TextTemplatingFileGenerator</Generator>
+		  <LastGenOutput>StateLessDecorExtensions.cs</LastGenOutput>
 	  </None>
 	  <None Update="DecorExtensions.tt">
 	    <Generator>TextTemplatingFileGenerator</Generator>
@@ -35,6 +52,16 @@
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
 	    <DependentUpon>Decorated.tt</DependentUpon>
+	  </Compile>
+	  <Compile Update="StatelessDecorated.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>StatelessDecorated.tt</DependentUpon>
+	  </Compile>
+	  <Compile Update="StateLessDecorExtensions.cs">
+	    <DependentUpon>StateLessDecorExtensions.tt</DependentUpon>
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
 	  </Compile>
 	  <Compile Update="DecorExtensions.cs">
 	    <DesignTime>True</DesignTime>

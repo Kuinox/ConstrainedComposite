@@ -1,0 +1,39 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+
+namespace Decor;
+
+<#
+foreach(var i in Enumerable.Range(1, 8))
+{
+	var decors = Enumerable.Range(1, i).Select(s=>"TDecor"+s).ToArray();
+#>
+
+public readonly struct StateLessDecorated<TDecorated,<#= string.Join(", ", decors)#>>
+<#= string.Join("\n", decors.Select(s=>$"    where {s} : IStatelessDecor<TDecorated, {s}>")) #>
+	
+{
+	internal StateLessDecorated(TDecorated core)
+	{
+		Core = core;
+	}
+
+	public TDecorated Core { get; }
+
+    public static implicit operator TDecorated(StateLessDecorated<TDecorated, <#= string.Join(", ", decors) #>> arg) => arg.Core;
+
+<# 
+	if(i > 1) {
+	foreach(var j in Enumerable.Range(0,i)) {
+	var numbers = decors.Select((s,i)=>i+1).Where((s,k) => k!=j).ToArray();
+	var downCast = string.Join(", ", numbers.Select(s=>"TDecor"+s));#>
+	public static implicit operator StateLessDecorated<TDecorated, <#= downCast #>>(StateLessDecorated<TDecorated, <#= string.Join(", ", decors)#>> arg) => new(arg.Core);
+<# }} #>
+}
+<#
+}
+#>
