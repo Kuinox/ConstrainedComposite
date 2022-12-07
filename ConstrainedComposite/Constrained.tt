@@ -1,0 +1,39 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+
+namespace ConstrainedComposite;
+
+<#
+foreach(var i in Enumerable.Range(1, 8))
+{
+	var constrains = Enumerable.Range(1, i).Select(s=>"T"+s).ToArray();
+#>
+
+public readonly struct Constrained<TConstrained,<#= string.Join(", ", constrains)#>>
+<#= string.Join("\n", constrains.Select(s=>$"    where {s} : IConstrainer<TConstrained>")) #>
+	
+{
+	internal Constrained(TConstrained core)
+	{
+		Core = core;
+	}
+
+	public TConstrained Core { get; }
+
+    public static implicit operator TConstrained(Constrained<TConstrained, <#= string.Join(", ", constrains) #>> arg) => arg.Core;
+
+<# 
+	if(i > 1) {
+	foreach(var j in Enumerable.Range(0,i)) {
+	var numbers = constrains.Select((s,i)=>i+1).Where((s,k) => k!=j).ToArray();
+	var downCast = string.Join(", ", numbers.Select(s=>"T"+s));#>
+	public static implicit operator Constrained<TConstrained, <#= downCast #>>(Constrained<TConstrained, <#= string.Join(", ", constrains)#>> arg) => new(arg.Core);
+<# }} #>
+}
+<#
+}
+#>

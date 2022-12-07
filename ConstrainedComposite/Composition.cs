@@ -1,5 +1,5 @@
 ﻿
-namespace RefinedComposite;
+namespace ConstrainedComposite;
 
 
 public readonly struct Composition<TCore,TComposite1>

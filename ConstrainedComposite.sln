@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33103.201
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RefinedComposite", "RefinedComposite\RefinedComposite.csproj", "{B25B0772-2F9B-41CD-9A48-4CCC8F495579}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConstrainedComposite", "ConstrainedComposite\ConstrainedComposite.csproj", "{B25B0772-2F9B-41CD-9A48-4CCC8F495579}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

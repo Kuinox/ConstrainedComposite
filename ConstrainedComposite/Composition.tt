@@ -5,7 +5,7 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
 
-namespace RefinedComposite;
+namespace ConstrainedComposite;
 
 <#
 foreach(var i in Enumerable.Range(1, 8))

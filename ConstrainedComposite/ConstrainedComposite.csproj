@@ -8,8 +8,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Include="Refined.cs">
-	    <DependentUpon>Refined.tt</DependentUpon>
+	  <None Include="Constrained.cs">
+	    <DependentUpon>Constrained.tt</DependentUpon>
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
 	  </None>
@@ -21,17 +21,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Update="Refined.tt">
+	  <None Update="Constrained.tt">
 		  <Generator>TextTemplatingFileGenerator</Generator>
-		  <LastGenOutput>Refined.cs</LastGenOutput>
+		  <LastGenOutput>Constrained.cs</LastGenOutput>
 	  </None>
 	  <None Update="Composition.tt">
 	    <Generator>TextTemplatingFileGenerator</Generator>
 	    <LastGenOutput>Composition.cs</LastGenOutput>
 	  </None>
-	  <None Update="RefineExtensions.tt">
+	  <None Update="ConstrainExtensions.tt">
 		  <Generator>TextTemplatingFileGenerator</Generator>
-		  <LastGenOutput>RefineExtensions.cs</LastGenOutput>
+		  <LastGenOutput>ConstrainExtensions.cs</LastGenOutput>
 	  </None>
 	  <None Update="CompositeExtensions.tt">
 	    <Generator>TextTemplatingFileGenerator</Generator>
@@ -54,13 +54,13 @@
 	    <AutoGen>True</AutoGen>
 	    <DependentUpon>Composition.tt</DependentUpon>
 	  </Compile>
-	  <Compile Update="Refined.cs">
+	  <Compile Update="Constrained.cs">
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
-	    <DependentUpon>Refined.tt</DependentUpon>
+	    <DependentUpon>Constrained.tt</DependentUpon>
 	  </Compile>
-	  <Compile Update="RefineExtensions.cs">
-	    <DependentUpon>RefineExtensions.tt</DependentUpon>
+	  <Compile Update="ConstrainExtensions.cs">
+	    <DependentUpon>ConstrainExtensions.tt</DependentUpon>
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
 	  </Compile>

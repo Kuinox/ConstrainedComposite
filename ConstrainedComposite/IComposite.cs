@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace RefinedComposite;
+namespace ConstrainedComposite;
 
 /// <summary>
 /// Implementation of this object allow to add Composite of a certain type to an object.

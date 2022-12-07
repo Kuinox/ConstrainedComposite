@@ -1,5 +1,5 @@
 ﻿
-namespace RefinedComposite;
+namespace ConstrainedComposite;
 
 /// <summary>
 /// This class hold extensions methods that allow to create anonymous composite objects.

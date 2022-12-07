@@ -1,0 +1,42 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+
+namespace ConstrainedComposite;
+
+/// <summary>
+/// This class hold extensions methods that allow to constraint objects.
+/// </summary>
+public static class ConstrainExtensions
+{
+<#
+	foreach(var i in Enumerable.Range(1, 7))
+{
+	var constrains = Enumerable.Range(1, i).ToArray();
+	var generics = string.Join(", ", constrains.Select(s=>"T"+s));
+	var constrainsArg = constrains.Take(i-1).ToArray();
+	var constraints = string.Join("\n", constrains.Select(j=>$"        where T{j} : IConstrainer<TConstrained>"));
+	var argType = i==1 ? "TConstrained" : "Constrained<TConstrained,"+string.Join(",", constrainsArg.Select(s=>"T"+s))+">";
+#>
+    /// <summary>
+<# if(i == 1) { #>
+    /// Constraint an object type.
+<# } else { #>
+	/// Apply an additional constraint on this constrained object.
+<# } #>
+    /// </summary>
+    /// <typeparam name="TConstrained">The <#= i == 1 ? "un" : "" #>Constrained object.</typeparam>
+<#= string.Join("\n", constrains.Select(s=>$"    /// <typeparam name=\"T{s}\">A constraint.</typeparam>")) #>
+    /// <param name="arg">The object to constraint.</param>
+    /// <returns> A datastructure that hold <paramref name="arg"/> and it's constraint together.</returns>
+	public static Constrained<TConstrained, <#= generics #>>? Constrain<TConstrained, <#=generics#>>( this <#=argType#> arg )
+<#=constraints#>
+	{
+		if(!T<#=i#>.TryConstrain(arg)) return null;
+		return new Constrained<TConstrained, <#= generics #>>(arg<#= i>1 ? ".Core" :""#>);
+	}
+<# } #>
+}
