@@ -1,27 +1,27 @@
 <h1 align="center">
-	RefinedComposite
+	ConstrainedComposite
 </h1>
 <p align="center">
-Refine or Compose on the fly your .NET Types
+Constrain or Compose on the fly your .NET Types
 </p>
 
-### Refine: A new tool for increased type safety
+### Constrain: A new tool for increased type safety
 
-Refine allow to emulate [Refinement Types](https://en.wikipedia.org/wiki/Refinement_type) in C#.  
+Constrain allow to emulate [Refinement Types](https://en.wikipedia.org/wiki/Refinement_type) in C#.  
 
 You can ensure, that an object given to your methods has previously satisfied a condition.
 
-Which mean, with this refinement:
+Which mean, with this constraint:
 
 ```csharp
-struct NotZero : IRefinement<int>
+struct NotZero : IConstrainer<int>
 {
-    public static bool TryRefine(int arg) => arg != 0;
+    public static bool TryConstrain(int arg) => arg != 0;
 }
 ```
 We can now make a method that take a number that cannot be 0 :
 ```csharp
-int FooBar(Refined<int, NotZero> number) {
+int FooBar(Constrained<int, NotZero> number) {
     return 42/number;
 }
 
