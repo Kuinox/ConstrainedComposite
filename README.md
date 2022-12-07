@@ -2,7 +2,7 @@
 	ConstrainedComposite
 </h1>
 <p align="center">
-Constrain or Compose on the fly your .NET Types
+Constrain or Compose on the fly your .NET Types 
 </p>
 
 ### Constrain: A new tool for increased type safety
