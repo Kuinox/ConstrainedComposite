@@ -1,0 +1,39 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+
+namespace RefinedComposite;
+
+<#
+foreach(var i in Enumerable.Range(1, 8))
+{
+	var refines = Enumerable.Range(1, i).Select(s=>"T"+s).ToArray();
+#>
+
+public readonly struct Refined<TRefined,<#= string.Join(", ", refines)#>>
+<#= string.Join("\n", refines.Select(s=>$"    where {s} : IRefinement<TRefined, {s}>")) #>
+	
+{
+	internal Refined(TRefined core)
+	{
+		Core = core;
+	}
+
+	public TRefined Core { get; }
+
+    public static implicit operator TRefined(Refined<TRefined, <#= string.Join(", ", refines) #>> arg) => arg.Core;
+
+<# 
+	if(i > 1) {
+	foreach(var j in Enumerable.Range(0,i)) {
+	var numbers = refines.Select((s,i)=>i+1).Where((s,k) => k!=j).ToArray();
+	var downCast = string.Join(", ", numbers.Select(s=>"T"+s));#>
+	public static implicit operator Refined<TRefined, <#= downCast #>>(Refined<TRefined, <#= string.Join(", ", refines)#>> arg) => new(arg.Core);
+<# }} #>
+}
+<#
+}
+#>

@@ -8,38 +8,34 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Decorated - Copy.cs" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Include="StatelessDecorated.cs">
-	    <DependentUpon>StatelessDecorated.tt</DependentUpon>
+	  <None Include="Refined.cs">
+	    <DependentUpon>Refined.tt</DependentUpon>
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
 	  </None>
-	  <None Include="Decorated.cs">
-		  <DependentUpon>Decorated.tt</DependentUpon>
+	  <None Include="Composition.cs">
+		  <DependentUpon>Composition.tt</DependentUpon>
 		  <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
 	  </None>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Update="StateLessDecorated.tt">
+	  <None Update="Refined.tt">
 		  <Generator>TextTemplatingFileGenerator</Generator>
-		  <LastGenOutput>StatelessDecorated.cs</LastGenOutput>
+		  <LastGenOutput>Refined.cs</LastGenOutput>
 	  </None>
-	  <None Update="Decorated.tt">
+	  <None Update="Composition.tt">
 	    <Generator>TextTemplatingFileGenerator</Generator>
-	    <LastGenOutput>Decorated.cs</LastGenOutput>
+	    <LastGenOutput>Composition.cs</LastGenOutput>
 	  </None>
-	  <None Update="StateLessDecorExtensions.tt">
+	  <None Update="RefineExtensions.tt">
 		  <Generator>TextTemplatingFileGenerator</Generator>
-		  <LastGenOutput>StateLessDecorExtensions.cs</LastGenOutput>
+		  <LastGenOutput>RefineExtensions.cs</LastGenOutput>
 	  </None>
-	  <None Update="DecorExtensions.tt">
+	  <None Update="CompositeExtensions.tt">
 	    <Generator>TextTemplatingFileGenerator</Generator>
-	    <LastGenOutput>DecorExtensions.cs</LastGenOutput>
+	    <LastGenOutput>CompositeExtensions.cs</LastGenOutput>
 	  </None>
 	</ItemGroup>
 
@@ -48,25 +44,30 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Decorated.cs">
+	  <Compile Update="Composite.cs">
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
-	    <DependentUpon>Decorated.tt</DependentUpon>
+	    <DependentUpon>Composite.tt</DependentUpon>
 	  </Compile>
-	  <Compile Update="StatelessDecorated.cs">
+	  <Compile Update="Composition.cs">
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
-	    <DependentUpon>StatelessDecorated.tt</DependentUpon>
+	    <DependentUpon>Composition.tt</DependentUpon>
 	  </Compile>
-	  <Compile Update="StateLessDecorExtensions.cs">
-	    <DependentUpon>StateLessDecorExtensions.tt</DependentUpon>
+	  <Compile Update="Refined.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>Refined.tt</DependentUpon>
+	  </Compile>
+	  <Compile Update="RefineExtensions.cs">
+	    <DependentUpon>RefineExtensions.tt</DependentUpon>
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
 	  </Compile>
-	  <Compile Update="DecorExtensions.cs">
+	  <Compile Update="CompositeExtensions.cs">
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
-	    <DependentUpon>DecorExtensions.tt</DependentUpon>
+	    <DependentUpon>CompositeExtensions.tt</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
