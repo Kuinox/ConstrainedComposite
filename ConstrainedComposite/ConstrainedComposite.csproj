@@ -5,8 +5,19 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<EnablePreviewFeatures>True</EnablePreviewFeatures>
 		<Nullable>enable</Nullable>
+		<PackageId>ConstrainedComposite</PackageId>
+		<Authors>Kuinox</Authors>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageTags>type-safety;refinement-types;composite</PackageTags>
+		<Description>Constrain or Compose on the fly your .NET Types. </Description>
+		<Deterministic>true</Deterministic>
 	</PropertyGroup>
 
+	<ItemGroup>
+		<None Include="..\README.md" Pack="true" PackagePath="\"/>
+	</ItemGroup>
+	
 	<ItemGroup>
 	  <None Include="Constrained.cs">
 	    <DependentUpon>Constrained.tt</DependentUpon>
@@ -18,6 +29,13 @@
 		  <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
 	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="DotNet.ReproducibleBuilds" Version="1.1.1">
+	    <PrivateAssets>all</PrivateAssets>
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
 	</ItemGroup>
 
 	<ItemGroup>
