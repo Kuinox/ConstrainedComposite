@@ -5,7 +5,7 @@
 Constrain or Compose on the fly your .NET Types 
 </p>
 
-![Nuget](https://img.shields.io/nuget/dt/ConstrainedComposite)
+![https://www.nuget.org/packages/ConstrainedComposite](https://img.shields.io/nuget/dt/ConstrainedComposite)
 
 ### Constrain: A new tool for increased type safety
 
