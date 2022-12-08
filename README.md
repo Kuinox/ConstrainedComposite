@@ -5,6 +5,8 @@
 Constrain or Compose on the fly your .NET Types 
 </p>
 
+![Nuget](https://img.shields.io/nuget/dt/ConstrainedComposite)
+
 ### Constrain: A new tool for increased type safety
 
 Constrain allow to emulate [Refinement Types](https://en.wikipedia.org/wiki/Refinement_type) in C#.  
@@ -28,7 +30,7 @@ int FooBar(Constrained<int, NotZero> number) {
 int input = GetNumber();
 FooBar(input); // Type error !
 
-var checkedInput = input.Refine<int,NotZero>();
+var checkedInput = input.Constrain<int,NotZero>();
 if(checkedInput is not null)
 {
     FooBar(checkedInput.Value); // Cannot be 0 !

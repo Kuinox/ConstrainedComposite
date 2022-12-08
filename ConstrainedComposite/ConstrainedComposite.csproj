@@ -11,7 +11,6 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageTags>type-safety;refinement-types;composite</PackageTags>
 		<Description>Constrain or Compose on the fly your .NET Types. </Description>
-		<Deterministic>true</Deterministic>
 	</PropertyGroup>
 
 	<ItemGroup>
